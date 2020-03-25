@@ -10,13 +10,8 @@ const isDevMode = process.env.NODE_ENV !== 'production'
 // Main const
 const PATHS = {
   src: path.resolve(__dirname, '../src'),
-  dist: path.resolve(__dirname, '../dist'),
-  assets: 'assets/'
+  dist: path.resolve(__dirname, '../dist')
 }
-
-// Pages const for HtmlWebpackPlugin
-const PAGES_DIR = `${PATHS.src}/pug/pages/`
-const PAGES = fs.readdirSync(PAGES_DIR).filter(fileName => fileName.endsWith('.pug'))
 
 module.exports = {
   externals: {
@@ -93,17 +88,17 @@ module.exports = {
 
   plugins: [
     new CleanWebpackPlugin(),
-    ...PAGES.map(page => new HtmlWebpackPlugin({
-      template: `${PAGES_DIR}/${page}`,
-      filename: `./${page.replace(/\.pug/, '.html')}`
-    })),
-    new MiniCssExtractPlugin({
-      filename: isDevMode ? `${PATHS.assets}css/[name].css` : `${PATHS.assets}css/[name].[hash].css`
+    new HtmlWebpackPlugin({
+      template: `${PATHS.src}/index.html`,
+      filename: 'index.html'
     }),
-    new CopyWebpackPlugin([
-      { from: `${PATHS.src}/${PATHS.assets}img`, to: `${PATHS.assets}img` },
-      { from: `${PATHS.src}/${PATHS.assets}fonts`, to: `${PATHS.assets}fonts` },
-      { from: `${PATHS.src}/static`, to: '' }
-    ])
+    // new MiniCssExtractPlugin({
+    //   filename: isDevMode ? `${PATHS.assets}css/[name].css` : `${PATHS.assets}css/[name].[hash].css`
+    // }),
+    // new CopyWebpackPlugin([
+    //   { from: `${PATHS.src}/${PATHS.assets}img`, to: `${PATHS.assets}img` },
+    //   { from: `${PATHS.src}/${PATHS.assets}fonts`, to: `${PATHS.assets}fonts` },
+    //   { from: `${PATHS.src}/static`, to: '' }
+    // ])
   ]
 }
