@@ -1,0 +1,19 @@
+.app {
+  height: 90vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+.content {
+  width: 90%;
+  height: 100%;
+  font-family: 'Courier New', Courier, monospace;
+  border: 1px solid black;
+}
+
+.result {
+  width: 10%;
+  height: 100%;
+  font-family: 'Courier New', Courier, monospace;
+  border: 1px solid black;
+}
