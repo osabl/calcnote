@@ -76,11 +76,6 @@ module.exports = {
               path: './webpack/postcss.config.js'
             }
           }
-        }, {
-          loader: 'sass-loader',
-          options: {
-            sourceMap: true
-          }
         }
       ]
     }]
@@ -92,9 +87,9 @@ module.exports = {
       template: `${PATHS.src}/index.html`,
       filename: 'index.html'
     }),
-    // new MiniCssExtractPlugin({
-    //   filename: isDevMode ? `${PATHS.assets}css/[name].css` : `${PATHS.assets}css/[name].[hash].css`
-    // }),
+    new MiniCssExtractPlugin({
+      filename: isDevMode ? `[name].css` : `[name].[hash].css`
+    }),
     // new CopyWebpackPlugin([
     //   { from: `${PATHS.src}/${PATHS.assets}img`, to: `${PATHS.assets}img` },
     //   { from: `${PATHS.src}/${PATHS.assets}fonts`, to: `${PATHS.assets}fonts` },
